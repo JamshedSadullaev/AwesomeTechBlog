@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Logs
+=======
+>>>>>>> ed72c3873bb0f99106e16725349460ae2c1141fa
 logs
 *.log
 npm-debug.log*
