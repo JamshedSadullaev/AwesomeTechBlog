@@ -10,17 +10,17 @@ function updatePost(id) {
 }
 
 function createHTML(title, date, id) {
-  let blogHolder = document.createElement("div");
-  let myDate = date.split("T");
-  let blogButton = document.createElement("button");
-  blogButton.classList.add("flex-fill", "btn", "btn-dark", "mt-2");
-  blogButton.id = id;
+  let blog = document.createElement("div");
+  let date = date.split("T");
+  let bButton = document.createElement("button");
+  bButton.classList.add("flex-fill", "btn", "btn-dark", "mt-2");
+  bButton.id = id;
 
-  blogButton.textContent = title + " --- " + myDate[0];
-  blogButton.setAttribute("onClick", "updatePost(" + blogButton.id + ")");
+  bButton.textContent = title + " --- " + date[0];
+  bButton.setAttribute("onClick", "updatePost(" + bButton.id + ")");
 
-  blogHolder.appendChild(blogButton);
-  blogContainer.appendChild(blogHolder);
+  blog.appendChild(bButton);
+  blogContainer.appendChild(blog);
 }
 
 function handleLoadingBlogs() {

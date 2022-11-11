@@ -20,7 +20,7 @@ router.post("/", withAuth, async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to post your blog.",
+      message: "Blog not posted",
     });
   }
 });
@@ -40,7 +40,7 @@ router.get("/", withAuth, async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to post your blog.",
+      message: "Blog not posted.",
     });
   }
 });
@@ -57,14 +57,14 @@ router.get("/one:id", async (req, res) => {
     if (foundBlog === null) {
       return res
         .status(404)
-        .json({ message: "Couldn't find a post with that id" });
+        .json({ message: "Post not found " });
     } else {
       return res.status(200).json(foundBlog);
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to find your blog.",
+      message: "Blog not found ",
     });
   }
 });
@@ -77,7 +77,7 @@ router.get("/all", async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to post your blog.",
+      message: "Error to find blog",
     });
   }
 });
@@ -97,19 +97,19 @@ router.put("/update:id", withAuth, async (req, res) => {
     if (postToUpdate === null) {
       return res
         .status(404)
-        .json({ message: "Couldn't find a post with that id" });
+        .json({ message: "Post not found" });
     } else {
       postToUpdate.update({
         title: title,
         content: content,
       });
       await postToUpdate.save();
-      return res.status(200).json({ message: "Successfully Updated Post!" });
+      return res.status(200).json({ message: "Post updated" });
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to update your blog.",
+      message: "Blog not updated",
     });
   }
 });
@@ -124,11 +124,11 @@ router.delete("/delete:id", async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "Deleted Blog entry Successfully!" });
+      .json({ message: "Blog deleted" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to delete your blog entry.",
+      message: "Blog not deleted",
     });
   }
 });

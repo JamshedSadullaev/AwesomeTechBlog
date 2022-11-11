@@ -20,7 +20,7 @@ router.get("/getConnected:id", withAuth, async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to retrieve comments.",
+      message: "Error to retrieve comment",
     });
   }
 });
@@ -41,7 +41,7 @@ router.post("/", withAuth, async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to post your blog.",
+      message: "Error to post the blog",
     });
   }
 });
@@ -62,7 +62,7 @@ router.get("/getOne:id", withAuth, async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to retrieve comments.",
+      message: "Error to retrieve the post.",
     });
   }
 });
@@ -82,18 +82,18 @@ router.put("/update:id", withAuth, async (req, res) => {
     if (commentToUpdate === null) {
       return res
         .status(404)
-        .json({ message: "Couldn't find a comment with that id" });
+        .json({ message: "Comment not found" });
     } else {
       commentToUpdate.update({
         content: content,
       });
       await commentToUpdate.save();
-      return res.status(200).json({ message: "Successfully Updated Comment!" });
+      return res.status(200).json({ message: "Comment updated" });
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to update your comment.",
+      message: "Comment not updated",
     });
   }
 });
@@ -106,11 +106,11 @@ router.delete("/delete:id", async (req, res) => {
       where: { id: commentId },
     });
 
-    return res.status(200).json({ message: "Deleted Comment Successfully!" });
+    return res.status(200).json({ message: "Comment deleted" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to delete your comment.",
+      message: "Comment is not deleted.",
     });
   }
 });

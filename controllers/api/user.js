@@ -6,9 +6,9 @@ const router = require("express").Router();
 // GET api/user route
 router.get("/", async (req, res) => {
   if (req.session.loggedIn) {
-    res.json({ message: "You are logged in" });
+    res.json({ message: "logged in" });
   } else {
-    res.json({ message: "You have logged out" });
+    res.json({ message: "logged out" });
   }
   console.log("You're in the user route");
   res.end();
@@ -28,14 +28,14 @@ router.get("/findUser:userId", async (req, res) => {
     if (findUser === null) {
       return res
         .status(404)
-        .json({ message: "Couldn't find user with that id" });
+        .json({ message: "User not found" });
     } else {
       return res.status(200).json(findUser.username);
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to search for your user.",
+      message: "Error to find user",
     });
   }
 });
@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
   if ((!username, !email, !password)) {
     return res.status(400).json({
       message:
-        "You did not submit all required information: Username, Email Address & Password",
+        "Must submit all info",
     });
   }
 
@@ -66,7 +66,7 @@ router.post("/", async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to create your user.",
+      message: "User could not created",
     });
   }
 });
@@ -78,7 +78,7 @@ router.post("/login", async (req, res) => {
   if ((!email, !password)) {
     return res
       .status(400)
-      .json({ message: "Incorrect Login, please try again." });
+      .json({ message: "Login not valid" });
   }
 
   try {
@@ -99,12 +99,12 @@ router.post("/login", async (req, res) => {
     } else {
       res
         .status(404)
-        .json({ message: "Email or Password is incorrect, please try again." });
+        .json({ message: "incorrect password or login" });
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while trying to log in.",
+      message: "error to login",
     });
   }
 });
